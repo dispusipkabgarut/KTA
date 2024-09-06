@@ -1,161 +1,159 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* Loading spinner style */
-      .spinner {
-        display: none;
-        margin: 10px auto;
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        border-top: 4px solid #3498db;
-        width: 40px;
-        height: 40px;
-        -webkit-animation: spin 1s linear infinite;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      /* Success message */
-      .success-message {
-        display: none;
-        color: green;
-        text-align: center;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="box-container">
-      <div class="form-container">
-        <div class="header-image">
-          <img src="Assets/Garut.jpg" alt="" />
-          <img src="Assets/Dispusip_Garut.png" alt="" />
-          <img src="Assets/logogarut.png" alt="" />
-        </div>
-        <h1>
-          Formulir <br />
-          Pendaftaran KTA
-        </h1>
-        <div class="form-input">
-          <form method="post" action="" name="contact-form" id="ktaForm">
-            <div class="input-nama input-grup">
-              <label for="NAMA LENGKAP">Nama Lengkap</label><br />
-              <input
-                type="text"
-                name="NAMA LENGKAP"
-                id="NAMA LENGKAP"
-                placeholder="Masukkan Nama Lengkap"
-                required
-              />
-            </div>
-            <div class="input-tanggal_lahir input-grup">
-              <label for="TANGGAL LAHIR">Tanggal Lahir</label><br />
-              <input type="date" name="TANGGAL LAHIR" id="TANGGAL LAHIR" required/>
-            </div>
-            <div class="input-institusi input-grup">
-              <label for="INSTITUSI">Institusi</label><br />
-              <input
-                type="text"
-                name="INSTITUSI"
-                id="INSTITUSI"
-                placeholder="Masukkan Institusi Anda"
-                required
-              />
-            </div>
-            <div class="no_hp input-grup">
-              <label for="NO HP">No HP:</label>
-              <input
-                type="tel"
-                id="NO HP"
-                name="NO HP"
-                required
-                placeholder="Masukkan No HP"
-              />
-            </div>
-            <div class="no_identitas input-grup">
-              <label for="NO IDENTITAS"
-                >No Identitas (KTP/KK/Kartu Pelajar):</label
-              ><br>
-              <input
-                type="text"
-                id="NO IDENTITAS"
-                name="NO IDENTITAS"
-                required
-                placeholder="Masukkan No Identitas"
-              />
-            </div>
-            <div class="email input-grup">
-              <label for="EMAIL">Email:</label>
-              <input type="email" id="EMAIL" name="EMAIL" placeholder="Masukkan Email"/>
-            </div>
-            <div class="tipe_anggota input-grup">
-                <label for="TIPE KEANGGOTAAN">Tipe Anggota :</label>
-                <select id="TIPE KEANGGOTAAN" name="TIPE KEANGGOTAAN" required>
-                  <option value="SD">SD</option>
-                  <option value="SMP">SMP</option>
-                  <option value="SMA">SMA</option>
-                  <option value="Mahasiswa">Mahasiswa</option>
-                  <option value="Karyawan">Karyawan</option>
-                  <option value="PNS">PNS</option>
-                  <option value="Umum">Umum</option>
-                  <option value="Pra Sekolah">Pra Sekolah</option>
-                </select>
-              </div>
-              <div class="jenis_kelamin input-grup">
-                <label for="JENIS KELAMIN"> Jenis Kelamin :</label>
-                <select id="JENIS KELAMIN" name="JENIS KELAMIN" required>
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-                </select>
-              </div>
-            <div class="alamat input-grup">
-                <label for="ALAMAT">Alamat Lengkap</label>
-                <textarea
-                  name="ALAMAT"
-                  id="ALAMAT"
-                  cols="60"
-                  rows="2"
-                  required
-                ></textarea>
-              </div>
-              <div class="daftar"><button type="submit" id="submit">Daftar</button></div>
-            
-          </form>
-          <!-- Loading spinner -->
-          <div class="spinner" id="spinner"></div>
-          <!-- Success message -->
-          <div class="success-message" id="successMessage">Pendaftaran Berhasil!</div>
-        </div>
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* CSS untuk loading spinner */
+    .loading {
+      display: none; /* Tersembunyi secara default */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #3498db;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="box-container">
+    <div class="form-container">
+      <div class="header-image">
+        <img src="Assets/Garut.jpg" alt="Garut" />
+        <img src="Assets/Dispusip_Garut.png" alt="Dispusip Garut" />
+        <img src="Assets/logogarut.png" alt="Logo Garut" />
       </div>
-
-      <div class="image-container">
-        <img src="Assets/Dinas.jpg" alt="Dispusip" />
+      <h1>
+        Formulir <br />
+        Pendaftaran KTA
+      </h1>
+      <div class="form-input">
+        <form method="post" action="" name="contact-form" id="contact-form">
+          <div class="input-nama input-grup">
+            <label for="NAMA LENGKAP">Nama Lengkap</label><br />
+            <input
+              type="text"
+              name="NAMA LENGKAP"
+              id="NAMA LENGKAP"
+              placeholder="Masukkan Nama Lengkap"
+              required
+            />
+          </div>
+          <div class="input-tanggal_lahir input-grup">
+            <label for="TANGGAL LAHIR">Tanggal Lahir</label><br />
+            <input type="date" name="TANGGAL LAHIR" id="TANGGAL LAHIR" required/>
+          </div>
+          <div class="input-institusi input-grup">
+            <label for="INSTITUSI">Institusi</label><br />
+            <input
+              type="text"
+              name="INSTITUSI"
+              id="INSTITUSI"
+              placeholder="Masukkan Institusi Anda"
+              required
+            />
+          </div>
+          <div class="no_hp input-grup">
+            <label for="NO HP">No HP:</label>
+            <input
+              type="tel"
+              id="NO HP"
+              name="NO HP"
+              required
+              placeholder="Masukkan No HP"
+            />
+          </div>
+          <div class="no_identitas input-grup">
+            <label for="NO IDENTITAS">No Identitas (KTP/KK/Kartu Pelajar):</label>
+            <input
+              type="text"
+              id="NO IDENTITAS"
+              name="NO IDENTITAS"
+              required
+              placeholder="Masukkan No Identitas"
+            />
+          </div>
+          <div class="email input-grup">
+            <label for="EMAIL">Email:</label>
+            <input type="email" id="EMAIL" name="EMAIL" placeholder="Masukkan Email"/>
+          </div>
+          <div class="tipe_anggota input-grup">
+            <label for="TIPE KEANGGOTAAN">Tipe Anggota :</label>
+            <select id="TIPE KEANGGOTAAN" name="TIPE KEANGGOTAAN" required>
+              <option value="SD">SD</option>
+              <option value="SMP">SMP</option>
+              <option value="SMA">SMA</option>
+              <option value="Mahasiswa">Mahasiswa</option>
+              <option value="Karyawan">Karyawan</option>
+              <option value="PNS">PNS</option>
+              <option value="Umum">Umum</option>
+              <option value="Pra Sekolah">Pra Sekolah</option>
+            </select>
+          </div>
+          <div class="jenis_kelamin input-grup">
+            <label for="JENIS KELAMIN"> Jenis Kelamin :</label>
+            <select id="JENIS KELAMIN" name="JENIS KELAMIN" required>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+          <div class="alamat input-grup">
+            <label for="ALAMAT">Alamat Lengkap</label>
+            <textarea
+              name="ALAMAT"
+              id="ALAMAT"
+              cols="60"
+              rows="2"
+              required
+            ></textarea>
+          </div>
+          <div class="daftar"><button type="submit" id="submit">Daftar</button></div>
+        </form>
       </div>
     </div>
 
-    <script>
-      // Form submit handler
-      document.getElementById('ktaForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent the form from submitting normally
-        
-        // Show spinner
-        document.getElementById('spinner').style.display = 'block';
-        
-        // Simulate loading and success
-        setTimeout(function () {
-          // Hide spinner
-          document.getElementById('spinner').style.display = 'none';
-          
-          // Show success message
-          document.getElementById('successMessage').style.display = 'block';
-        }, 2000); // Simulate 2 seconds loading time
-      });
-    </script>
-  </body>
+    <div class="image-container">
+      <img src="Assets/Dinas.jpg" alt="Dispusip" />
+    </div>
+
+    <!-- Loading spinner -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Integrasi JavaScript untuk Google Sheets -->
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzM6WS_J2kbAmNBxPXgoKR54l3FckoNqy88G_aBJqIzXV_X7-HNFxUKh202V1fS_hq1/exec';
+    const form = document.forms['contact-form'];
+    const loading = document.getElementById('loading');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      loading.style.display = 'block'; // Tampilkan spinner saat submit
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          alert("Terima kasih! Formulir Anda berhasil dikirim.");
+          form.reset(); // Reset formulir
+          window.location.reload(); // Reload halaman setelah submit
+        })
+        .catch(error => console.error('Error!', error.message))
+        .finally(() => {
+          loading.style.display = 'none'; // Sembunyikan spinner setelah selesai
+        });
+    });
+  </script>
+</body>
 </html>
