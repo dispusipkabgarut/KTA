@@ -1,0 +1,125 @@
+/* Pastikan font tetap sama */
+@import url("https://fonts.googleapis.com/css2?family=Grey+Qo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+* {
+  font-family: "Poppins";
+  font-size: 0.9rem;
+  box-sizing: border-box; /* Agar padding tidak menambah ukuran */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh; /* Mengubah height menjadi min-height agar lebih fleksibel */
+  overflow-y: auto; /* Menambahkan scroll */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('Assets/Dispusip.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; 
+}
+
+.box-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 40px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  min-height: 75%; 
+  position: relative;
+  overflow-y: auto; /* Tambahkan agar form bisa di-scroll */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100%;
+  padding-bottom: 20px;
+}
+
+.form-container h1 {
+  font-size: 23px;
+  text-align: center;
+}
+
+.header-image {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header-image img {
+  width: 80px;
+  height: auto;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.form-input input, .form-input textarea, .form-input select {
+  background-color: rgb(252, 252, 252);
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+#submit {
+  background-color: rgb(49, 125, 239);
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid white;
+}
+
+#submit:hover {
+  background-color: rgb(7, 59, 149);
+}
+
+/* Responsiveness untuk mobile devices */
+@media (max-width: 768px) {
+  .box-container {
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+  }
+
+  .form-container {
+    padding: 0;
+  }
+  
+  .form-input input, .form-input textarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .box-container {
+    padding: 15px;
+  }
+
+  .form-container h1 {
+    font-size: 18px;
+  }
+
+  #submit {
+    width: 100%;
+  }
+}
