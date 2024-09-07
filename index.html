@@ -146,12 +146,18 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzKMEXuFjqny28tT82oyE0q4lQfAB4hw7-qkaUoeZnbNOyfkLdIWEodWEFzc9zHQK0/exec';
     const form = document.forms['contact-form'];
     const loading = document.getElementById('loading');
-
+  
     form.addEventListener('submit', e => {
       e.preventDefault();
       loading.style.display = 'block'; // Tampilkan spinner saat submit
-
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  
+      // Loop melalui semua elemen input dalam form dan ubah isinya menjadi uppercase
+      const formData = new FormData(form);
+      formData.forEach((value, key) => {
+        formData.set(key, value.toUpperCase()); // Ubah nilai input menjadi kapital
+      });
+  
+      fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
           alert("Terima kasih! Formulir Anda berhasil dikirim.");
           form.reset(); // Reset formulir
@@ -163,5 +169,6 @@
         });
     });
   </script>
+  
 </body>
 </html>
